@@ -29,3 +29,8 @@
     width: 91%;
     min-width: 90%;
 }
+
+/* admin/product page */
+.admin_heading {
+    font-size: 40px;
+}
