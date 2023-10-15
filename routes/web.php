@@ -17,6 +17,10 @@ use App\Http\Controllers\AdminController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+// all the front pages routes is existing here================================
+// ==============================================================================
+
 route::get('/',[HomeController::class,'index']);
 
 Route::middleware([
@@ -30,6 +34,16 @@ Route::middleware([
 });
 
 route::get('/redirect',[HomeController::class,'redirect']);
+
+// Product details page from the home page
+route::get('/product_details/{id}',[HomeController::class,'product_details'])->name('product_details');
+
+
+
+
+// all the admin pages routes is existing here================================
+// ==============================================================================
+
 route::get('/view_catagory',[AdminController::class,'view_catagory'])->name('view_catagory');
 
 // category added
@@ -53,6 +67,6 @@ route::get('/delete_product/{id}',[AdminController::class,'delete_product'])->na
 // Product update from the product show page to update page
 route::get('/update_product/{id}',[AdminController::class,'update_product'])->name('update_product');
 
-
 // Product updated
 route::post('/update_product_confirm/{id}',[AdminController::class,'update_product_confirm'])->name('update_product_confirm');
+

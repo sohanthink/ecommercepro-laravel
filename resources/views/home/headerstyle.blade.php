@@ -9,6 +9,7 @@
       <link rel="shortcut icon" href="home/images/favicon.png" type="">
       <title>Famms - Fashion HTML Template</title>
       <!-- bootstrap core css -->
+      <base href="/public">
       <link rel="stylesheet" type="text/css" href="home/css/bootstrap.css" />
       <!-- font awesome style -->
       <link href="home/css/font-awesome.min.css" rel="stylesheet" />
