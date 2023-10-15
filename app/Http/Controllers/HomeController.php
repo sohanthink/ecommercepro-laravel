@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use  App\Models\User;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\Products;
 class HomeController extends Controller
 {
 
+    // functions to go to the main homepage===========================================
     public function index(){
-        return view('home.userpage');
+        $products = Products::paginate(3);
+        return view('home.userpage',compact('products'));
     }
 
 
+    // User and admin management fro the site =========================================
     public function redirect(){
         $usertype = Auth::User()->usertype;
 
@@ -21,7 +24,8 @@ class HomeController extends Controller
             return view('admin.home');
         }
         else{
-            return view('home.userpage');
+            $products = Products::paginate(3);
+            return view('home.userpage',compact('products'));
         }
     }
     

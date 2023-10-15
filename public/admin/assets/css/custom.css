@@ -8,12 +8,17 @@
 }
 
 .main-panel input {
-    color: rgb(224, 228, 255) !important;
+    color: rgb(65, 65, 65) !important;
     /* background: rgb(143, 0, 0) */
 }
 
 .main-panel input:placeholder {
     color: black !important;
+}
+
+.main-panel input:focus {
+    color: rgb(239, 239, 239) !important;
+    background: rgb(29, 29, 29);
 }
 
 .content-wrapper {
@@ -33,4 +38,43 @@
 /* admin/product page */
 .admin_heading {
     font-size: 40px;
+    font-family: "Rubik", sans-serif;
+}
+
+.product-info {
+    max-height: 100px;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+/* Style the paragraph inside the container */
+.product-info p {
+    margin: 0;
+    /* Remove default margin to fit content nicely */
+}
+
+.product_img {
+    height: 100px;
+}
+
+
+/* Custom pagination styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination .page-item {
+    margin: 0 5px;
+}
+
+.pagination .page-link {
+    background-color: #007BFF;
+    color: #fff;
+    border: 1px solid #007BFF;
+    border-radius: 20px;
+}
+
+.pagination .page-link:hover {
+    background-color: #0056b3;
 }

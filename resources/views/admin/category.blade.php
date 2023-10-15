@@ -34,7 +34,7 @@
                 @csrf
                     <div class="form-group mx-sm-3 mb-2">
                         <label for="inputPassword2" class="sr-only">Category Name</label>
-                        <input name="category" type="text" class="form-control" id="inputPassword2" placeholder="Category Name">
+                        <input name="category" type="text" class="form-control" id="inputPassword2" placeholder="Category Name" required="">
                     </div>
                     <button type="submit" class="btn btn-primary mb-2">Add Category</button>
                 </form>

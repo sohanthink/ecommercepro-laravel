@@ -28,6 +28,7 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
 route::get('/redirect',[HomeController::class,'redirect']);
 route::get('/view_catagory',[AdminController::class,'view_catagory'])->name('view_catagory');
 
@@ -42,3 +43,16 @@ route::get('/view_product',[AdminController::class,'view_product'])->name('view_
 
 // product add
 route::post('/add_product',[AdminController::class,'add_product'])->name('add_product');
+
+// product show on the admin dashboard
+route::get('/show_product',[AdminController::class,'show_product'])->name('show_product');
+
+// Product delete from the product show page
+route::get('/delete_product/{id}',[AdminController::class,'delete_product'])->name('delete_product');
+
+// Product update from the product show page to update page
+route::get('/update_product/{id}',[AdminController::class,'update_product'])->name('update_product');
+
+
+// Product updated
+route::post('/update_product_confirm/{id}',[AdminController::class,'update_product_confirm'])->name('update_product_confirm');
