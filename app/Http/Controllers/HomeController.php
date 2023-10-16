@@ -70,8 +70,31 @@ class HomeController extends Controller
         }
         // if there is no user login then send him to register/login
         else{
-            return redirect('register ');
+            return redirect('register');
+        }
+    }
+
+
+     // show cart with product added
+     public function show_cart(){
+        // if is checking that is there any user is logged in or not?
+        if(Auth::id()){
+            $id = Auth::user()->id;
+            $cart = Cart::where('user_id', $id)->get();
+            return view('home.show_cart',compact('cart'));
+        }
+        else{
+            return redirect('register');
         }
         
     }
+
+
+    public function remove_cart_item($id){
+        $item = Cart::find($id)->delete();
+        return back();
+    }
+
+
+
 }

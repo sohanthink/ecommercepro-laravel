@@ -42,6 +42,13 @@ route::get('/product_details/{id}',[HomeController::class,'product_details'])->n
 route::post('/add_cart/{id}',[HomeController::class,'add_cart'])->name('add_cart');
 
 
+// show cart with the added product
+route::get('/show_cart',[HomeController::class,'show_cart'])->name('show_cart');
+
+// Remove an item/product from the cart page.
+route::get('/remove_cart_item/{id}',[HomeController::class,'remove_cart_item'])->name('remove_cart_item');
+
+
 
 
 // all the admin pages routes is existing here================================

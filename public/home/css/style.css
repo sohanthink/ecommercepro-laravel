@@ -1179,3 +1179,28 @@ h1 {
   color: #e74c3c;
   margin-top: 10px;
 }
+
+
+.product-image {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.remove-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: rgb(20, 38, 19);
+  cursor: pointer;
+}
+
+.cart-item {
+  padding: 20px 0;
+  border-bottom: 1px solid black;
+}
+
+.hd {
+  font-size: 35px;
+  font-weight: 600;
+  margin-bottom: 50px;
+}
