@@ -38,6 +38,9 @@ route::get('/redirect',[HomeController::class,'redirect']);
 // Product details page from the home page
 route::get('/product_details/{id}',[HomeController::class,'product_details'])->name('product_details');
 
+// Product add to cart button
+route::post('/add_cart/{id}',[HomeController::class,'add_cart'])->name('add_cart');
+
 
 
 

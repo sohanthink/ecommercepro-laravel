@@ -30,7 +30,16 @@
                         @else
                         <p class="product-price">Original Price : $ {{$product->price}}</p>
                     @endif
-                    <button class="btn btn-success">Add to Cart</button>
+                    <div class="quantity-and-cart d-flex align-items-baseline">
+                        <form action="{{route('add_cart',$product->id)}}" method="post">
+                            @csrf
+                            <div class="quantity-section">
+                                <label for="quantity">Quantity:</label>
+                                <input class="mr-2" style="width:50px" type="number" id="quantity" name="quantity" value="1" min="1">
+                            </div>
+                            <input class="cart_btn" type="submit" value="Add To Cart">
+                        </form>
+                    </div>       
                 </div>
             </div>
          </div>

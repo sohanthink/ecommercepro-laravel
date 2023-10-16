@@ -15,9 +15,18 @@
                            <a href="{{route('product_details',$product->id)}}" class="option1">
                            Details
                            </a>
-                           <a href="" class="option2">
-                           Buy Now
-                           </a>
+
+                           <div class="quantity-and-cart d-flex align-items-baseline">
+                              <form action="{{route('add_cart',$product->id)}}" method="post">
+                                 @csrf
+                                 <div class="quantity-section">
+                                       <label for="quantity">Quantity:</label>
+                                       <input class="mr-2" style="width:50px" type="number" id="quantity" name="quantity" value="1" min="1">
+                                 </div>
+                                 <input class="cart_btn" type="submit" value="Add To Cart">
+                              </form>
+                           </div>
+
                         </div>
                      </div>
                      <div class="img-box">
