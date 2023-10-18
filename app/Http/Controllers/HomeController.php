@@ -7,6 +7,10 @@ use  App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Products;
 use App\Models\Cart;
+use App\Models\Order;
+use Session;
+use Stripe;
+
 class HomeController extends Controller
 {
 
@@ -90,8 +94,64 @@ class HomeController extends Controller
     }
 
 
+    // remove a cart item from the cart page
     public function remove_cart_item($id){
         $item = Cart::find($id)->delete();
+        return back()->with('message','Cart Item Deleted Successfully');
+    }
+
+
+    // process cash on delivery button
+    public function cash_order(){
+        $user = Auth::user();
+        $userid = $user->id;
+        $cartdata = Cart::where('user_id',$userid)->get();
+        
+        foreach($cartdata as $cartdata){
+            $order = new Order;
+            $order->name = $cartdata->name;
+            $order->email = $cartdata->email;
+            $order->phone = $cartdata->phone;
+            $order->address = $cartdata->address;
+            $order->user_id = $cartdata->user_id;
+
+            $order->product_title = $cartdata->product_title;
+            $order->quantity = $cartdata->quantity;
+            $order->price = $cartdata->price;
+            $order->image = $cartdata->image;
+            $order->product_id = $cartdata->product_id;
+
+            $order->payment_status = 'cash on delivery';
+            $order->delivery_status = 'processing';
+            $order -> save();
+
+            $cartid = $cartdata->id;
+            $cart = Cart::findOrFail($cartid);
+            $cart -> delete();
+            
+        }
+        return back()->with('message','Order Placed Successfully, We will Contact with You Soon');
+    }
+
+
+    // payment with stripe
+    public function stripe($total_price)
+    {
+        return view('stripe',compact('total_price'));
+    }
+
+    public function stripePost(Request $request, $total_price)
+    {
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe\Charge::create ([
+                "amount" => $total_price*100,
+                "currency" => "USD",
+                "source" => $request->stripeToken,
+                "description" => "This payment is testing purpose of techsolutionstuff",
+        ]);
+   
+        Session::flash('success', 'Payment Successfull!');
+           
         return back();
     }
 

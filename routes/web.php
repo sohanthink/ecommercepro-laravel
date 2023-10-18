@@ -48,7 +48,12 @@ route::get('/show_cart',[HomeController::class,'show_cart'])->name('show_cart');
 // Remove an item/product from the cart page.
 route::get('/remove_cart_item/{id}',[HomeController::class,'remove_cart_item'])->name('remove_cart_item');
 
+// cash on delivery from the cart
+route::get('/cash_order',[HomeController::class,'cash_order'])->name('cash_order');
 
+// payment stripe
+Route::get('/stripe/{total_price}', [HomeController::class, 'stripe'])->name('stripe');
+Route::post('stripe/{total_price}', [HomeController::class, 'stripePost'])->name('stripe.post');
 
 
 // all the admin pages routes is existing here================================
