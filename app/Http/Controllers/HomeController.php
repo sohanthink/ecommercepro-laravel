@@ -147,11 +147,37 @@ class HomeController extends Controller
                 "amount" => $total_price*100,
                 "currency" => "USD",
                 "source" => $request->stripeToken,
-                "description" => "This payment is testing purpose of techsolutionstuff",
+                "description" => "Payment for e-com site",
         ]);
    
         Session::flash('success', 'Payment Successfull!');
-           
+        
+        $user = Auth::user();
+        $userid = $user->id;
+        $cartdata = Cart::where('user_id',$userid)->get();
+        foreach($cartdata as $cartdata){
+            $order = new Order;
+            $order->name = $cartdata->name;
+            $order->email = $cartdata->email;
+            $order->phone = $cartdata->phone;
+            $order->address = $cartdata->address;
+            $order->user_id = $cartdata->user_id;
+
+            $order->product_title = $cartdata->product_title;
+            $order->quantity = $cartdata->quantity;
+            $order->price = $cartdata->price;
+            $order->image = $cartdata->image;
+            $order->product_id = $cartdata->product_id;
+
+            $order->payment_status = 'card payment';
+            $order->delivery_status = 'paid';
+            $order -> save();
+
+            $cartid = $cartdata->id;
+            $cart = Cart::findOrFail($cartid);
+            $cart -> delete();
+        }
+
         return back();
     }
 
