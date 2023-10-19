@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Products;
+use App\Models\Order;
 use Illuminate\Database\Eloquent\Model;
 
 
@@ -97,27 +98,33 @@ class AdminController extends Controller
     // Update data from taking the updated data
     public function update_product_confirm(Request $request, $id){
         // Retrieve the specific product by ID
-    $product = Products::findOrFail($id);
-    
-    // Handle image upload
-    if ($request->hasFile('image')) {
-        $image = $request->file('image');
-        $imagename = time() . '.' . $image->getClientOriginalExtension();
-        $imagePath = $image->storeAs('product_images', $imagename, 'public');
-        $product->image = 'product_images/' . $imagename;
+        $product = Products::findOrFail($id);
+        
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $imagePath = $image->storeAs('product_images', $imagename, 'public');
+            $product->image = 'product_images/' . $imagename;
+        }
+
+        // Update other product attributes
+        $product->title = $request->title;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->discount_price = $request->discount_price;
+        $product->quantity = $request->quantity;
+        $product->category = $request->category;
+        
+        $product->save(); // Save the updated product
+
+        return back()->with('message', 'Product Updated Successfully');
     }
 
-    // Update other product attributes
-    $product->title = $request->title;
-    $product->description = $request->description;
-    $product->price = $request->price;
-    $product->discount_price = $request->discount_price;
-    $product->quantity = $request->quantity;
-    $product->category = $request->category;
-    
-    $product->save(); // Save the updated product
 
-    return back()->with('message', 'Product Updated Successfully');
+    public function orders(){
+        $orders = Order::all();
+        return view('admin.orders',compact('orders'));
     }
 
 

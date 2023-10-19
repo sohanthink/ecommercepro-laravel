@@ -88,6 +88,14 @@
               <span class="menu-title">Category</span>
             </a>
           </li>
+          <li class=" mt-1 nav-item menu-items">
+            <a class="nav-link" href="{{route('orders')}}">
+              <span class="menu-icon">
+                <i class="mdi mdi-playlist-play"></i>
+              </span>
+              <span class="menu-title">Orders</span>
+            </a>
+          </li>
           
           
         </ul>

@@ -85,3 +85,6 @@ route::get('/update_product/{id}',[AdminController::class,'update_product'])->na
 // Product updated
 route::post('/update_product_confirm/{id}',[AdminController::class,'update_product_confirm'])->name('update_product_confirm');
 
+// Customer ORDERS  
+route::get('/orders',[AdminController::class,'orders'])->name('orders');
+

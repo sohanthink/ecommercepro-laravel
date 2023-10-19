@@ -152,6 +152,7 @@ class HomeController extends Controller
    
         Session::flash('success', 'Payment Successfull!');
         
+        // after payment, i moved the cart data to order table
         $user = Auth::user();
         $userid = $user->id;
         $cartdata = Cart::where('user_id',$userid)->get();
