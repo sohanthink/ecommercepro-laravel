@@ -88,3 +88,6 @@ route::post('/update_product_confirm/{id}',[AdminController::class,'update_produ
 // Customer ORDERS  
 route::get('/orders',[AdminController::class,'orders'])->name('orders');
 
+// delivery status delivered 
+route::get('/delivered/{id}',[AdminController::class,'delivered'])->name('delivered');
+

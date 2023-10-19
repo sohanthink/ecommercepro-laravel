@@ -49,6 +49,7 @@
                             <th>Payment Status</th>
                             <th>Delivery Status</th>
                             <th>Image</th>
+                            <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -67,6 +68,13 @@
                             <td>
                                 <img src="/product_images/{{$order->image}}" alt="">
                             </td>
+                            <td>
+                                @if($order->delivery_status == 'processing')
+                                    <a onclick="showWarning()" href="{{route('delivered',$order->id)}}" class="btn btn-primary">deliver</a>
+                                @else
+                                    <p>Delivered</p>
+                                @endif
+                            </td>
                           </tr>
                         @endforeach
 
@@ -81,5 +89,11 @@
 
             </div>
     @include('admin.script')
+    <script>
+        function showWarning() {
+            // Display a warning message
+            alert('This is a warning message. Are you sure you want to proceed?');
+        }
+    </script>
 </body>
 </html>
