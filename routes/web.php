@@ -91,3 +91,6 @@ route::get('/orders',[AdminController::class,'orders'])->name('orders');
 // delivery status delivered 
 route::get('/delivered/{id}',[AdminController::class,'delivered'])->name('delivered');
 
+// pdf receipt download
+route::get('/print_pdf/{id}',[AdminController::class,'print_pdf'])->name('print_pdf');
+

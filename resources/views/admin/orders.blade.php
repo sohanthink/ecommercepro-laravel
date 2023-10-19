@@ -75,6 +75,9 @@
                                     <p>Delivered</p>
                                 @endif
                             </td>
+                            <td>
+                                <a class="btn btn-secondary" href="{{route('print_pdf',$order->id)}}">Download Receipt</a>
+                            </td>
                           </tr>
                         @endforeach
 
