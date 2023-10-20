@@ -33,7 +33,7 @@ Route::middleware([
     })->name('dashboard');
 });
 
-route::get('/redirect',[HomeController::class,'redirect']);
+route::get('/redirect',[HomeController::class,'redirect'])->middleware('auth','verified');
 
 // Product details page from the home page
 route::get('/product_details/{id}',[HomeController::class,'product_details'])->name('product_details');
